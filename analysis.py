@@ -11,7 +11,7 @@ with open('./labels.json','r') as label:
   label_data = json.load(label)
 
 try:
-  subprocess.run(f'python detect.py --source ../../images/{file} --conf 0.50 --weights ./runs/best.pt --name {filename} --save-txt',check=True,timeout=20,shell=True)
+  subprocess.run(f'sudo python3 detect.py --source ../../images/{file} --conf 0.50 --weights ./runs/best.pt --name {filename} --save-txt',check=True,timeout=20,shell=True)
 
   shutil.copy(image_path,f'../../images/Detect_{file}')
 
@@ -22,7 +22,7 @@ try:
       lines = file.readlines()
 
       for line in lines:
-        coin.append(line[0])
+        coin.append(line.split()[0])
   coinList = list(map(lambda coinID: label_data[coinID],coin))
 
   resData = {}
